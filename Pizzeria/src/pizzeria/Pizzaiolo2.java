@@ -1,10 +1,10 @@
 package pizzeria;
 
 public class Pizzaiolo2 implements Runnable {
-	private Buffer b;
+	private listaPizza lp;
 	
-	public Pizzaiolo2(Buffer b) {
-		this.b = b;
+	public Pizzaiolo2(listaPizza lp) {
+		this.lp = lp;
 	}
 	
 	public void run() {
