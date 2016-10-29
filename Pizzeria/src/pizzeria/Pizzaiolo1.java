@@ -1,9 +1,9 @@
 package pizzeria;
 
-public class Cliente implements Runnable {
+public class Pizzaiolo1 implements Runnable {
 	private Buffer b;
 	
-	public Cliente(Buffer b) {
+	public Pizzaiolo1(Buffer b) {
 		this.b = b;
 	}
 	
