@@ -8,6 +8,6 @@ public class Cliente implements Runnable {
 	}
 	
 	public void run() {
-		
+		System.out.println("Ciao prof");
 	}
 }
