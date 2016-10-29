@@ -1,9 +1,7 @@
 package pizzeria;
 
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.*;
 
 public class Pizzeria {
 
@@ -56,6 +54,11 @@ public class Pizzeria {
 		Button btnNewButton_2 = new Button(shell, SWT.NONE);
 		btnNewButton_2.setBounds(305, 34, 109, 25);
 		btnNewButton_2.setText("Arriva un cliente!");
-
+		
+		List list = new List(shell, SWT.BORDER);
+		list.setBounds(10, 99, 71, 68);
+		
+		List list_1 = new List(shell, SWT.BORDER);
+		list_1.setBounds(149, 99, 71, 68);
 	}
 }
