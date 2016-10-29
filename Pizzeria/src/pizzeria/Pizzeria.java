@@ -57,6 +57,11 @@ public class Pizzeria {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				System.out.println("Pizzeria aperta");
+				ListaPizza listaPizza = new ListaPizza();
+				Pizzaiolo1 p1 = new Pizzaiolo1(listaPizza);
+				
+				Thread t = new Thread(p1);
+				t.start();
 			}
 		});
 		

@@ -1,16 +1,18 @@
 package pizzeria;
 
-public class listaPizza {
+public class ListaPizza {
 	
-	private int numero=0;
+	private String pizza;
 	
-	public listaPizza() {
-		numero = 0;
+	public ListaPizza() {
+		pizza = "";
 	}
 	
-	public synchronized void pizzaInLista() {
-		while(numero!=0) {
+	public synchronized String pizzaInLista(String pizza) {
+		this.pizza = pizza;
+		while(pizza.equals("")) {
 			try {
+				System.out.println("nessuna pizza");
 				wait();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -18,6 +20,7 @@ public class listaPizza {
 			}
 		}
 		notifyAll();
+		return pizza;
 	}
 	
 	public synchronized void pizzaPronta() {

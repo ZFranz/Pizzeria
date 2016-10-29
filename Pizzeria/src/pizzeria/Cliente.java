@@ -1,9 +1,9 @@
 package pizzeria;
 
 public class Cliente implements Runnable {
-	private listaPizza lp;
+	private ListaPizza lp;
 	
-	public Cliente(listaPizza lp) {
+	public Cliente(ListaPizza lp) {
 		this.lp = lp;
 	}
 	
