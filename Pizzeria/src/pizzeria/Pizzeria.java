@@ -1,7 +1,11 @@
 package pizzeria;
 
+import java.awt.Color;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
+import org.eclipse.swt.layout.*;
+import org.eclipse.swt.custom.ScrolledComposite;
 
 public class Pizzeria {
 
@@ -39,6 +43,7 @@ public class Pizzeria {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
+		
 		shell = new Shell();
 		shell.setSize(450, 300);
 		shell.setText("Pizzeria");
@@ -55,10 +60,9 @@ public class Pizzeria {
 		btnNewButton_2.setBounds(305, 34, 109, 25);
 		btnNewButton_2.setText("Arriva un cliente!");
 		
-		List list = new List(shell, SWT.BORDER);
-		list.setBounds(10, 99, 71, 68);
-		
-		List list_1 = new List(shell, SWT.BORDER);
-		list_1.setBounds(149, 99, 71, 68);
+		ScrolledComposite scrolledComposite = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		scrolledComposite.setBounds(25, 90, 85, 85);
+	    scrolledComposite.setExpandHorizontal(false);
+		scrolledComposite.setExpandVertical(true);
 	}
 }
