@@ -1,43 +1,48 @@
 package pizzeria;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 
 public class ClienteGrafico {
 
-	private JFrame frame;
+	protected Shell shell;
 
 	/**
 	 * Launch the application.
+	 * @param args
 	 */
 	public static void newScreen() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClienteGrafico window = new ClienteGrafico();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		try {
+			ClienteGrafico window = new ClienteGrafico();
+			window.open();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Open the window.
+	 */
+	public void open() {
+		Display display = Display.getDefault();
+		createContents();
+		shell.open();
+		shell.layout();
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
 			}
-		});
+		}
 	}
 
 	/**
-	 * Create the application.
+	 * Create contents of the window.
 	 */
-	public ClienteGrafico() {
-		initialize();
-	}
+	protected void createContents() {
+		shell = new Shell();
+		shell.setSize(450, 300);
+		shell.setText("SWT Application");
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }
