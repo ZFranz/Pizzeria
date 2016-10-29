@@ -15,4 +15,8 @@ public class Buffer {
 	public synchronized void pizzaPronta() {
 		
 	}
+	
+	public synchronized void ordinaPizza() {
+		
+	}
 }

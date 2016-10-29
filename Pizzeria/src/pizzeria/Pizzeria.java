@@ -6,6 +6,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
 import org.eclipse.swt.layout.*;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class Pizzeria {
 
@@ -48,17 +50,35 @@ public class Pizzeria {
 		shell.setSize(450, 300);
 		shell.setText("Pizzeria");
 		
-		Button btnNewButton = new Button(shell, SWT.NONE);
-		btnNewButton.setBounds(10, 34, 75, 25);
-		btnNewButton.setText("Apri Pizzeria");
+		Button apriPizzeria = new Button(shell, SWT.NONE);
+		apriPizzeria.setBounds(10, 34, 75, 25);
+		apriPizzeria.setText("Apri Pizzeria");
+		apriPizzeria.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				System.out.println("Pizzeria aperta");
+			}
+		});
 		
-		Button btnNewButton_1 = new Button(shell, SWT.NONE);
-		btnNewButton_1.setBounds(102, 34, 89, 25);
-		btnNewButton_1.setText("Chiudi Pizzeria");
+		Button chiudiPizzeria = new Button(shell, SWT.NONE);
+		chiudiPizzeria.setBounds(102, 34, 89, 25);
+		chiudiPizzeria.setText("Chiudi Pizzeria");
+		chiudiPizzeria.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				System.out.println("Pizzeria chiusa");
+			}
+		});
 		
-		Button btnNewButton_2 = new Button(shell, SWT.NONE);
-		btnNewButton_2.setBounds(305, 34, 109, 25);
-		btnNewButton_2.setText("Arriva un cliente!");
+		Button ArrivaCliente = new Button(shell, SWT.NONE);
+		ArrivaCliente.setBounds(305, 34, 109, 25);
+		ArrivaCliente.setText("Arriva un cliente!");
+		ArrivaCliente.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				System.out.println("Arriva un cliente");
+			}
+		});
 		
 		ScrolledComposite scrolledComposite = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledComposite.setBounds(25, 90, 85, 85);
