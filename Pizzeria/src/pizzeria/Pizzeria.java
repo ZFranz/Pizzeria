@@ -1,13 +1,11 @@
 package pizzeria;
 
-import java.awt.Color;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
-import org.eclipse.swt.layout.*;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class Pizzeria {
 
@@ -47,7 +45,8 @@ public class Pizzeria {
 	protected void createContents() {
 		
 		shell = new Shell();
-		shell.setSize(450, 300);
+		shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
+		shell.setSize(450, 492);
 		shell.setText("Pizzeria");
 		
 		Button apriPizzeria = new Button(shell, SWT.NONE);
@@ -85,9 +84,47 @@ public class Pizzeria {
 			}
 		});
 		
-		ScrolledComposite scrolledComposite = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		scrolledComposite.setBounds(25, 90, 85, 85);
-	    scrolledComposite.setExpandHorizontal(false);
-		scrolledComposite.setExpandVertical(true);
+		Composite composite = new Composite(shell, SWT.NONE);
+		composite.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
+		composite.setBounds(0, 53, 484, 368);
+		
+		ScrolledComposite scrolledCompositePizzeInAttesa = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		scrolledCompositePizzeInAttesa.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		scrolledCompositePizzeInAttesa.setBounds(10, 90, 149, 322);
+	    scrolledCompositePizzeInAttesa.setExpandHorizontal(false);
+		scrolledCompositePizzeInAttesa.setExpandVertical(true);
+		
+		ScrolledComposite scrolledCompositePizzeInProduzione = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		scrolledCompositePizzeInProduzione.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		scrolledCompositePizzeInProduzione.setBounds(165, 90, 158, 322);
+		scrolledCompositePizzeInProduzione.setExpandHorizontal(true);
+		scrolledCompositePizzeInProduzione.setExpandVertical(true);
+		
+		ScrolledComposite scrolledCompositePizzePronte = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		scrolledCompositePizzePronte.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		scrolledCompositePizzePronte.setBounds(329, 90, 145, 322);
+		scrolledCompositePizzePronte.setExpandHorizontal(true);
+		scrolledCompositePizzePronte.setExpandVertical(true);
+		
+		Label labelPizzeInCoda = new Label(shell, SWT.NONE);
+		labelPizzeInCoda.setFont(SWTResourceManager.getFont("Letter Gothic Std", 8, SWT.BOLD));
+		labelPizzeInCoda.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		labelPizzeInCoda.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
+		labelPizzeInCoda.setText("Pizze in coda:");
+		labelPizzeInCoda.setBounds(10, 69, 98, 15);
+		
+		Label lblPizzeInProduzione = new Label(shell, SWT.NONE);
+		lblPizzeInProduzione.setFont(SWTResourceManager.getFont("Letter Gothic Std", 8, SWT.BOLD));
+		lblPizzeInProduzione.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		lblPizzeInProduzione.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
+		lblPizzeInProduzione.setBounds(165, 69, 149, 15);
+		lblPizzeInProduzione.setText("Pizze in produzione:");
+		
+		Label lblPizzePronte = new Label(shell, SWT.NONE);
+		lblPizzePronte.setFont(SWTResourceManager.getFont("Letter Gothic Std", 8, SWT.BOLD));
+		lblPizzePronte.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		lblPizzePronte.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
+		lblPizzePronte.setBounds(329, 69, 98, 15);
+		lblPizzePronte.setText("Pizze pronte:");
 	}
 }
