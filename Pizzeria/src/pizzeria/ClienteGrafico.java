@@ -7,12 +7,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.List;
 
 public class ClienteGrafico {
 
-	protected Shell shell;
-	private Text text;
+	protected Shell shlOrdinaPizza;
 	ListaPizza listaPizza;
+	private List list;
+	private Text text;
 
 	public ClienteGrafico(ListaPizza listaPizza) {
 		this.listaPizza = listaPizza;
@@ -42,9 +44,9 @@ public class ClienteGrafico {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		shell.open();
-		shell.layout();
-		while (!shell.isDisposed()) {
+		shlOrdinaPizza.open();
+		shlOrdinaPizza.layout();
+		while (!shlOrdinaPizza.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
@@ -55,25 +57,28 @@ public class ClienteGrafico {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shell = new Shell();
-		shell.setSize(450, 300);
-		shell.setText("SWT Application");
+		shlOrdinaPizza = new Shell();
+		shlOrdinaPizza.setSize(450, 300);
+		shlOrdinaPizza.setText("Ordina Pizza");
 		
-		text = new Text(shell, SWT.BORDER);
-		text.setBounds(67, 121, 76, 21);
+		list = new List(shlOrdinaPizza, SWT.BORDER);
+		list.setBounds(10, 10, 150, 242);
 		
-		Button btnNewButton = new Button(shell, SWT.NONE);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
+		text = new Text(shlOrdinaPizza, SWT.BORDER);
+		text.setBounds(176, 10, 76, 21);
+		
+		Button ordina = new Button(shlOrdinaPizza, SWT.NONE);
+		ordina.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Cliente c = new Cliente(listaPizza);
+				String testo = text.getText();
+				Cliente c = new Cliente(listaPizza, testo);
 				
 				Thread t = new Thread(c);
 				t.start();
 			}
 		});
-		btnNewButton.setBounds(193, 121, 75, 25);
-		btnNewButton.setText("New Button");
-
+		ordina.setBounds(281, 9, 75, 25);
+		ordina.setText("Ordina");
 	}
 }
