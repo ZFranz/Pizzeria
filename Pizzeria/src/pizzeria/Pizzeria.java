@@ -81,6 +81,8 @@ public class Pizzeria {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				System.out.println("Arriva un cliente");
+				ClienteGrafico newWindow = new ClienteGrafico();
+				newWindow.newScreen();
 			}
 		});
 		
