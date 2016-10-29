@@ -15,6 +15,15 @@ public class ClienteGrafico {
 	ListaPizza listaPizza;
 	private List list;
 	private Text text;
+	private static final String[] ITEMS ={
+			"Pizza bianca",
+			"Pizza rossa",
+			"Margherita",
+			"Capricciosa",
+			"Diavola",
+			"Quattro stagioni",
+			"Bufala",
+			"Napoletana" };
 
 	public ClienteGrafico(ListaPizza listaPizza) {
 		this.listaPizza = listaPizza;
@@ -61,8 +70,11 @@ public class ClienteGrafico {
 		shlOrdinaPizza.setSize(450, 300);
 		shlOrdinaPizza.setText("Ordina Pizza");
 		
-		list = new List(shlOrdinaPizza, SWT.BORDER);
+		list = new List(shlOrdinaPizza, SWT.BORDER | SWT.V_SCROLL);
 		list.setBounds(10, 10, 150, 242);
+		for(int i = 0; i < ITEMS.length; i++) {
+			list.add(ITEMS[i]);
+		}
 		
 		text = new Text(shlOrdinaPizza, SWT.BORDER);
 		text.setBounds(176, 10, 76, 21);
