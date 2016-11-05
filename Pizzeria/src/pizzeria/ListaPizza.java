@@ -2,14 +2,14 @@ package pizzeria;
 
 public class ListaPizza {
 	
-	private String pizza;
+	private String ordine;
 	
 	public ListaPizza() {
-		pizza = "";
+		ordine = "";
 	}
 	
 	public synchronized String pizzaInLista(String pizza) {
-		this.pizza = pizza;
+		this.ordine = pizza;
 		while(pizza.equals("")) {
 			try {
 				System.out.println("nessuna pizza");
