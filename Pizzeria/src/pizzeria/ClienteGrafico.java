@@ -16,6 +16,7 @@ public class ClienteGrafico {
 	ListaPizza listaPizza;
 	private List list;
 	private String nomeCliente;
+	private String temp;
 	private static final String[] ITEMS ={
 			"Pizza bianca",
 			"Pizza rossa",
@@ -89,8 +90,7 @@ public class ClienteGrafico {
 		list.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				String temp = list.getItem(list.getSelectionIndex());
-				System.out.println(temp);
+				temp = list.getItem(list.getSelectionIndex());
 				ordina.setEnabled(true);
 				pizzaSelezionata.setText(temp);
 			}
@@ -99,7 +99,7 @@ public class ClienteGrafico {
 		ordina.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Cliente c = new Cliente(listaPizza, nomeCliente);
+				Cliente c = new Cliente(listaPizza, nomeCliente, temp);
 				
 				Thread t = new Thread(c);
 				t.start();
