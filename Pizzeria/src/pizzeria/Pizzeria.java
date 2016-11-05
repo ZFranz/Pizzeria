@@ -11,6 +11,8 @@ public class Pizzeria {
 
 	protected Shell shell;
 	ListaPizza listaPizza = new ListaPizza();
+	private Text text;
+	String nomeCliente = "";
 
 	/**
 	 * Launch the application.
@@ -47,11 +49,11 @@ public class Pizzeria {
 		
 		shell = new Shell();
 		shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
-		shell.setSize(450, 492);
+		shell.setSize(505, 500);
 		shell.setText("Pizzeria");
 		
 		Button apriPizzeria = new Button(shell, SWT.NONE);
-		apriPizzeria.setBounds(10, 34, 75, 25);
+		apriPizzeria.setBounds(10, 10, 75, 25);
 		apriPizzeria.setText("Apri Pizzeria");
 		apriPizzeria.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -65,7 +67,7 @@ public class Pizzeria {
 		});
 		
 		Button chiudiPizzeria = new Button(shell, SWT.NONE);
-		chiudiPizzeria.setBounds(102, 34, 89, 25);
+		chiudiPizzeria.setBounds(91, 10, 89, 25);
 		chiudiPizzeria.setText("Chiudi Pizzeria");
 		chiudiPizzeria.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -74,37 +76,41 @@ public class Pizzeria {
 			}
 		});
 		
+		Label lblNomeCliente = new Label(shell, SWT.NONE);
+		lblNomeCliente.setBounds(202, 20, 75, 15);
+		lblNomeCliente.setText("Nome cliente");
+		
+		text = new Text(shell, SWT.BORDER);
+		text.setBounds(283, 14, 76, 21);
+
 		Button ArrivaCliente = new Button(shell, SWT.NONE);
-		ArrivaCliente.setBounds(305, 34, 109, 25);
+		ArrivaCliente.setBounds(364, 10, 109, 25);
 		ArrivaCliente.setText("Arriva un cliente!");
 		ArrivaCliente.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				System.out.println("Arriva un cliente");
-				ClienteGrafico newWindow = new ClienteGrafico(listaPizza);
+				nomeCliente = text.getText().toString();
+				ClienteGrafico newWindow = new ClienteGrafico(listaPizza, nomeCliente);
 				newWindow.open();
 			}
 		});
 		
-		Composite composite = new Composite(shell, SWT.NONE);
-		composite.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
-		composite.setBounds(0, 53, 484, 368);
-		
 		ScrolledComposite scrolledCompositePizzeInAttesa = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledCompositePizzeInAttesa.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-		scrolledCompositePizzeInAttesa.setBounds(10, 90, 149, 322);
+		scrolledCompositePizzeInAttesa.setBounds(10, 90, 150, 350);
 	    scrolledCompositePizzeInAttesa.setExpandHorizontal(false);
 		scrolledCompositePizzeInAttesa.setExpandVertical(true);
 		
 		ScrolledComposite scrolledCompositePizzeInProduzione = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledCompositePizzeInProduzione.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-		scrolledCompositePizzeInProduzione.setBounds(165, 90, 158, 322);
+		scrolledCompositePizzeInProduzione.setBounds(170, 90, 150, 350);
 		scrolledCompositePizzeInProduzione.setExpandHorizontal(true);
 		scrolledCompositePizzeInProduzione.setExpandVertical(true);
 		
 		ScrolledComposite scrolledCompositePizzePronte = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledCompositePizzePronte.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-		scrolledCompositePizzePronte.setBounds(329, 90, 145, 322);
+		scrolledCompositePizzePronte.setBounds(330, 90, 150, 350);
 		scrolledCompositePizzePronte.setExpandHorizontal(true);
 		scrolledCompositePizzePronte.setExpandVertical(true);
 		
@@ -113,20 +119,20 @@ public class Pizzeria {
 		labelPizzeInCoda.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		labelPizzeInCoda.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
 		labelPizzeInCoda.setText("Pizze in coda:");
-		labelPizzeInCoda.setBounds(10, 69, 98, 15);
+		labelPizzeInCoda.setBounds(10, 69, 150, 15);
 		
 		Label lblPizzeInProduzione = new Label(shell, SWT.NONE);
 		lblPizzeInProduzione.setFont(SWTResourceManager.getFont("Letter Gothic Std", 8, SWT.BOLD));
 		lblPizzeInProduzione.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		lblPizzeInProduzione.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
-		lblPizzeInProduzione.setBounds(165, 69, 149, 15);
+		lblPizzeInProduzione.setBounds(170, 69, 150, 15);
 		lblPizzeInProduzione.setText("Pizze in produzione:");
 		
 		Label lblPizzePronte = new Label(shell, SWT.NONE);
 		lblPizzePronte.setFont(SWTResourceManager.getFont("Letter Gothic Std", 8, SWT.BOLD));
 		lblPizzePronte.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		lblPizzePronte.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
-		lblPizzePronte.setBounds(329, 69, 98, 15);
+		lblPizzePronte.setBounds(330, 69, 150, 15);
 		lblPizzePronte.setText("Pizze pronte:");
 	}
 }

@@ -8,13 +8,14 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Label;
 
 public class ClienteGrafico {
 
 	protected Shell shlOrdinaPizza;
 	ListaPizza listaPizza;
 	private List list;
-	private Text text;
+	private String nomeCliente;
 	private static final String[] ITEMS ={
 			"Pizza bianca",
 			"Pizza rossa",
@@ -24,10 +25,12 @@ public class ClienteGrafico {
 			"Quattro stagioni",
 			"Bufala",
 			"Napoletana" };
+	private Label cliente;
+	private Label pizzaSelezionata;
 
-	public ClienteGrafico(ListaPizza listaPizza) {
+	public ClienteGrafico(ListaPizza listaPizza, String nomeCliente) {
 		this.listaPizza = listaPizza;
-		// TODO Auto-generated constructor stub
+		this.nomeCliente = nomeCliente;
 	}
 	
 	public ClienteGrafico() {
@@ -67,30 +70,44 @@ public class ClienteGrafico {
 	 */
 	protected void createContents() {
 		shlOrdinaPizza = new Shell();
-		shlOrdinaPizza.setSize(450, 300);
+		shlOrdinaPizza.setSize(220, 350);
 		shlOrdinaPizza.setText("Ordina Pizza");
 		
 		list = new List(shlOrdinaPizza, SWT.BORDER | SWT.V_SCROLL);
-		list.setBounds(10, 10, 150, 242);
+		cliente = new Label(shlOrdinaPizza, SWT.NONE);
+		Button ordina = new Button(shlOrdinaPizza, SWT.NONE);
+		ordina.setEnabled(false);
+		pizzaSelezionata = new Label(shlOrdinaPizza, SWT.NONE);
+		
+		cliente.setBounds(10, 10, 176, 15);
+		cliente.setText("Cliente: " + nomeCliente);
+		
+		list.setBounds(10, 47, 176, 205);
 		for(int i = 0; i < ITEMS.length; i++) {
 			list.add(ITEMS[i]);
 		}
+		list.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				String temp = list.getItem(list.getSelectionIndex());
+				System.out.println(temp);
+				ordina.setEnabled(true);
+				pizzaSelezionata.setText(temp);
+			}
+		});
 		
-		text = new Text(shlOrdinaPizza, SWT.BORDER);
-		text.setBounds(176, 10, 76, 21);
-		
-		Button ordina = new Button(shlOrdinaPizza, SWT.NONE);
 		ordina.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				String testo = text.getText();
-				Cliente c = new Cliente(listaPizza, testo);
+				Cliente c = new Cliente(listaPizza, nomeCliente);
 				
 				Thread t = new Thread(c);
 				t.start();
 			}
 		});
-		ordina.setBounds(281, 9, 75, 25);
+		ordina.setBounds(111, 277, 75, 25);
 		ordina.setText("Ordina");
+		
+		pizzaSelezionata.setBounds(10, 282, 95, 15);
 	}
 }
