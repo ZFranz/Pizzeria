@@ -103,6 +103,7 @@ public class ClienteGrafico {
 				
 				Thread t = new Thread(c);
 				t.start();
+				shlOrdinaPizza.close();
 			}
 		});
 		ordina.setBounds(111, 277, 75, 25);

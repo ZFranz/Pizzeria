@@ -8,6 +8,8 @@ public class Pizzaiolo2 implements Runnable {
 	}
 	
 	public void run() {
-		
+		while(true) {
+			lp.pizzaInLista();
+		}
 	}
 }

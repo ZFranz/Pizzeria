@@ -2,15 +2,15 @@ package pizzeria;
 
 public class ListaPizza {
 	
-	private String ordine;
+	String ordine;
+	String temp;
 	
 	public ListaPizza() {
 		ordine = "";
 	}
 	
-	public synchronized String pizzaInLista(String pizza) {
-		this.ordine = pizza;
-		while(pizza.equals("")) {
+	public synchronized String pizzaInLista() {
+		while(ordine.equals("")) {
 			try {
 				System.out.println("nessuna pizza");
 				wait();
@@ -19,16 +19,7 @@ public class ListaPizza {
 				e.printStackTrace();
 			}
 		}
-		notifyAll();
-		return pizza;
-	}
-	
-	public synchronized void pizzaPronta() {
-		
-	}
-	
-	public synchronized void ordinaPizza(String pizza) {
-		switch (pizza) {
+		switch (ordine) {
 			case "Pizza bianca":
 				try {
 					Thread.sleep(5000);
@@ -36,6 +27,8 @@ public class ListaPizza {
 					e.printStackTrace();
 				}
 				System.out.println("Pizza bianca");
+				temp = ordine;
+				ordine = "";
 				notifyAll();
 				break;
 	
@@ -46,6 +39,8 @@ public class ListaPizza {
 					e.printStackTrace();
 				}
 				System.out.println("Pizza rossa");
+				temp = ordine;
+				ordine = "";
 				notifyAll();
 				break;
 				
@@ -56,6 +51,8 @@ public class ListaPizza {
 					e.printStackTrace();
 				}
 				System.out.println("Margherita");
+				temp = ordine;
+				ordine = "";
 				notifyAll();
 				break;
 				
@@ -66,6 +63,8 @@ public class ListaPizza {
 					e.printStackTrace();
 				}
 				System.out.println("Capricciosa");
+				temp = ordine;
+				ordine = "";
 				notifyAll();
 				break;
 				
@@ -76,6 +75,8 @@ public class ListaPizza {
 					e.printStackTrace();
 				}
 				System.out.println("Diavola");
+				temp = ordine;
+				ordine = "";
 				notifyAll();
 				break;
 				
@@ -86,6 +87,8 @@ public class ListaPizza {
 					e.printStackTrace();
 				}
 				System.out.println("Quattro stagioni");
+				temp = ordine;
+				ordine = "";
 				notifyAll();
 				break;
 				
@@ -96,6 +99,8 @@ public class ListaPizza {
 					e.printStackTrace();
 				}
 				System.out.println("Bufala");
+				temp = ordine;
+				ordine = "";
 				notifyAll();
 				break;
 				
@@ -106,11 +111,24 @@ public class ListaPizza {
 					e.printStackTrace();
 				}
 				System.out.println("Napoletana");
+				temp = ordine;
+				ordine = "";
 				notifyAll();
 				break;
 				
 			default:
 				break;
 		}
+		return temp;
+	}
+	
+	public synchronized void pizzaPronta() {
+		
+	}
+	
+	public synchronized void ordinaPizza(String pizza) {
+		ordine = pizza;
+		notifyAll();
+		
 	}
 }
