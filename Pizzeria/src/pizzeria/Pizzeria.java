@@ -17,6 +17,8 @@ public class Pizzeria {
 	String nomeCliente = "";
 	Pizzeria pizzeria;
 	List pizzeInCoda;
+	List pizzeInProduzione;
+	List pizzePronte;
 
 	/**
 	 * Launch the application.
@@ -69,6 +71,8 @@ public class Pizzeria {
 		Label lblPizzeInProduzione = new Label(shell, SWT.NONE);
 		Label lblPizzePronte = new Label(shell, SWT.NONE);
 		pizzeInCoda = new List(shell, SWT.BORDER);
+		pizzeInProduzione = new List(shell, SWT.BORDER);
+		pizzePronte = new List(shell, SWT.BORDER);
 		
 		
 		Pizzaiolo1 p1 = new Pizzaiolo1(listaPizza);
@@ -139,11 +143,7 @@ public class Pizzeria {
 		lblPizzePronte.setText("Pizze pronte:");
 		
 		pizzeInCoda.setBounds(10, 90, 150, 350);
-		
-		List pizzeInProduzione = new List(shell, SWT.BORDER);
 		pizzeInProduzione.setBounds(170, 90, 150, 350);
-		
-		List pizzePronte = new List(shell, SWT.BORDER);
 		pizzePronte.setBounds(330, 90, 150, 350);
 	}
 }
