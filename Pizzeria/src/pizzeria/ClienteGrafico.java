@@ -102,16 +102,10 @@ public class ClienteGrafico {
 		ordina.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Cliente c = new Cliente(listaPizza, nomeCliente, temp);
+				Cliente c = new Cliente(listaPizza, nomeCliente, temp, pizzeria);
 				
 				Thread t = new Thread(c);
 				t.start();
-				
-				/*pizzeria.PizzeInCoda.getDisplay().asyncExec(new Runnable() {
-					public void run() {
-						PizzeInCoda.add(temp);
-					}
-				});*/
 				
 				pizzeria.addPizzaOrdinata(temp);
 				

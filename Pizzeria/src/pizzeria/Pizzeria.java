@@ -19,6 +19,7 @@ public class Pizzeria {
 	List pizzeInCoda;
 	List pizzeInProduzione;
 	List pizzePronte;
+	Display display;
 
 	/**
 	 * Launch the application.
@@ -37,7 +38,7 @@ public class Pizzeria {
 	 * Open the window.
 	 */
 	public void open() {
-		Display display = Display.getDefault();
+		display = Display.getDefault();
 		createContents();
 		pizzeria = this;
 		shell.open();
@@ -50,7 +51,57 @@ public class Pizzeria {
 	}
 
 	public void addPizzaOrdinata(String p) {
-		pizzeInCoda.add(p);
+		display.asyncExec(new Runnable() {			
+			@Override
+			public void run() {
+				pizzeInCoda.add(p);
+			}
+		});		
+	}
+	
+	public void removePizzaOrdinata(String p) {
+		display.asyncExec(new Runnable() {			
+			@Override
+			public void run() {
+				pizzeInCoda.remove(p);
+			}
+		});
+	}
+	
+	public void addPizzaProduzione(String p) {
+		display.asyncExec(new Runnable() {			
+			@Override
+			public void run() {
+				pizzeInProduzione.add(p);
+			}
+		});
+	}
+	
+	public void removePizzaProduzione(String p) {
+		display.asyncExec(new Runnable() {			
+			@Override
+			public void run() {
+				pizzeInProduzione.remove(p);
+			}
+		});
+	}
+	
+	public void addPizzaPronta(String p) {
+		display.asyncExec(new Runnable() {			
+			@Override
+			public void run() {
+				pizzePronte.add(p);
+			}
+		});
+	}
+	
+	public void removePizzaPronta(String p) {
+		display.asyncExec(new Runnable() {			
+			@Override
+			public void run() {
+				pizzePronte.remove(p);
+			}
+		});
 	}
 	
 	/**
@@ -100,7 +151,6 @@ public class Pizzeria {
 			public void widgetSelected(SelectionEvent e) {
 				System.out.println("Pizzeria chiusa");
 				ArrivaCliente.setEnabled(false);
-				
 			}
 		});
 		
@@ -116,7 +166,18 @@ public class Pizzeria {
 		ArrivaCliente.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if (StringUtils.isBlank(text.getText())) {
+				if(text.getText().equals("Demian")) {
+					MessageBox messageBox = new MessageBox(shell, SWT.ICON_ERROR);
+				    messageBox.setMessage("No è arrivato Demian, scappiamo tutti!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				    messageBox.open();
+				    shell.close();
+				} else if(text.getText().equals("Igor")) {
+					MessageBox messageBox = new MessageBox(shell, SWT.ICON_ERROR);
+				    messageBox.setMessage("No è arrivato Igor, scappiamo tutti!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				    messageBox.open();
+				    shell.close();
+				} 
+				else if (StringUtils.isBlank(text.getText())) {
 					System.out.println("Nessun cliente");
 				} else {
 					System.out.println("Arriva un cliente");

@@ -4,6 +4,7 @@ public class ListaPizza {
 	
 	String ordine;
 	String temp;
+	Pizzeria pizzeria;
 	
 	public ListaPizza() {
 		ordine = "";
@@ -22,7 +23,11 @@ public class ListaPizza {
 		switch (ordine) {
 			case "Pizza bianca":
 				try {
+					pizzeria.removePizzaOrdinata(ordine);
+					pizzeria.addPizzaProduzione(ordine);
 					Thread.sleep(5000);
+					pizzeria.removePizzaProduzione(ordine);
+					pizzeria.addPizzaPronta(ordine);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -34,7 +39,11 @@ public class ListaPizza {
 	
 			case "Pizza rossa":
 				try {
+					pizzeria.removePizzaOrdinata(ordine);
+					pizzeria.addPizzaProduzione(ordine);
 					Thread.sleep(6000);
+					pizzeria.removePizzaProduzione(ordine);
+					pizzeria.addPizzaPronta(ordine);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -46,7 +55,11 @@ public class ListaPizza {
 				
 			case "Margherita":
 				try {
+					pizzeria.removePizzaOrdinata(ordine);
+					pizzeria.addPizzaProduzione(ordine);
 					Thread.sleep(7000);
+					pizzeria.removePizzaProduzione(ordine);
+					pizzeria.addPizzaPronta(ordine);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -58,7 +71,11 @@ public class ListaPizza {
 				
 			case "Capricciosa":
 				try {
+					pizzeria.removePizzaOrdinata(ordine);
+					pizzeria.addPizzaProduzione(ordine);
 					Thread.sleep(10000);
+					pizzeria.removePizzaProduzione(ordine);
+					pizzeria.addPizzaPronta(ordine);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -70,7 +87,11 @@ public class ListaPizza {
 				
 			case "Diavola":
 				try {
+					pizzeria.removePizzaOrdinata(ordine);
+					pizzeria.addPizzaProduzione(ordine);
 					Thread.sleep(8000);
+					pizzeria.removePizzaProduzione(ordine);
+					pizzeria.addPizzaPronta(ordine);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -82,7 +103,11 @@ public class ListaPizza {
 				
 			case "Quattro stagioni":
 				try {
+					pizzeria.removePizzaOrdinata(ordine);
+					pizzeria.addPizzaProduzione(ordine);
 					Thread.sleep(11000);
+					pizzeria.removePizzaProduzione(ordine);
+					pizzeria.addPizzaPronta(ordine);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -94,7 +119,11 @@ public class ListaPizza {
 				
 			case "Bufala":
 				try {
+					pizzeria.removePizzaOrdinata(ordine);
+					pizzeria.addPizzaProduzione(ordine);
 					Thread.sleep(10000);
+					pizzeria.removePizzaProduzione(ordine);
+					pizzeria.addPizzaPronta(ordine);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -106,7 +135,11 @@ public class ListaPizza {
 				
 			case "Napoletana":
 				try {
+					pizzeria.removePizzaOrdinata(ordine);
+					pizzeria.addPizzaProduzione(ordine);
 					Thread.sleep(9000);
+					pizzeria.removePizzaProduzione(ordine);
+					pizzeria.addPizzaPronta(ordine);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -126,8 +159,9 @@ public class ListaPizza {
 		
 	}
 	
-	public synchronized void ordinaPizza(String pizza) {
+	public synchronized void ordinaPizza(String pizza, Pizzeria pizzeria) {
 		ordine = pizza;
+		this.pizzeria = pizzeria;
 		notifyAll();
 	}
 }
