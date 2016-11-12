@@ -129,6 +129,5 @@ public class ListaPizza {
 	public synchronized void ordinaPizza(String pizza) {
 		ordine = pizza;
 		notifyAll();
-		
 	}
 }

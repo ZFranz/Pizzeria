@@ -1,5 +1,6 @@
 package pizzeria;
 
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -13,6 +14,8 @@ public class Pizzeria {
 	ListaPizza listaPizza = new ListaPizza();
 	private Text text;
 	String nomeCliente = "";
+	Pizzeria pizzeria;
+	List pizzeInCoda;
 
 	/**
 	 * Launch the application.
@@ -33,6 +36,7 @@ public class Pizzeria {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
+		pizzeria = this;
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {
@@ -42,6 +46,10 @@ public class Pizzeria {
 		}
 	}
 
+	public void addPizzaOrdinata(String p) {
+		pizzeInCoda.add(p);
+	}
+	
 	/**
 	 * Create contents of the window.
 	 */
@@ -56,12 +64,13 @@ public class Pizzeria {
 		Button chiudiPizzeria = new Button(shell, SWT.NONE);
 		Label lblNomeCliente = new Label(shell, SWT.NONE);
 		Button ArrivaCliente = new Button(shell, SWT.NONE);
-		ScrolledComposite scrolledCompositePizzeInAttesa = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		ScrolledComposite scrolledCompositePizzeInProduzione = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		ScrolledComposite scrolledCompositePizzePronte = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		Label labelPizzeInCoda = new Label(shell, SWT.NONE);
 		Label lblPizzeInProduzione = new Label(shell, SWT.NONE);
 		Label lblPizzePronte = new Label(shell, SWT.NONE);
+		pizzeInCoda = new List(shell, SWT.BORDER);
+		
 		
 		Pizzaiolo1 p1 = new Pizzaiolo1(listaPizza);
 		Thread t = new Thread(p1);
@@ -101,17 +110,16 @@ public class Pizzeria {
 		ArrivaCliente.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("Arriva un cliente");
-				nomeCliente = text.getText().toString();
-				ClienteGrafico newWindow = new ClienteGrafico(listaPizza, nomeCliente);
-				newWindow.open();
+				if (text.getText() != null) {
+					System.out.println("Nessun cliente");
+				} else {
+					System.out.println("Arriva un cliente");
+					/*nomeCliente = text.getText().toString();
+					ClienteGrafico newWindow = new ClienteGrafico(listaPizza, nomeCliente, pizzeria);
+					newWindow.open();*/
+				}
 			}
 		});
-		
-		scrolledCompositePizzeInAttesa.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-		scrolledCompositePizzeInAttesa.setBounds(10, 90, 150, 350);
-	    scrolledCompositePizzeInAttesa.setExpandHorizontal(false);
-		scrolledCompositePizzeInAttesa.setExpandVertical(true);
 		
 		scrolledCompositePizzeInProduzione.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		scrolledCompositePizzeInProduzione.setBounds(170, 90, 150, 350);
@@ -140,5 +148,7 @@ public class Pizzeria {
 		lblPizzePronte.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
 		lblPizzePronte.setBounds(330, 69, 150, 15);
 		lblPizzePronte.setText("Pizze pronte:");
+		
+		pizzeInCoda.setBounds(10, 90, 150, 350);
 	}
 }

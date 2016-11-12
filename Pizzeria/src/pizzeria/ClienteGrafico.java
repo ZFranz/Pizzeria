@@ -15,6 +15,7 @@ public class ClienteGrafico {
 	protected Shell shlOrdinaPizza;
 	ListaPizza listaPizza;
 	private List list;
+	private List PizzeInCoda;
 	private String nomeCliente;
 	private String temp;
 	private static final String[] ITEMS ={
@@ -28,10 +29,12 @@ public class ClienteGrafico {
 			"Napoletana" };
 	private Label cliente;
 	private Label pizzaSelezionata;
+	private Pizzeria pizzeria;
 
-	public ClienteGrafico(ListaPizza listaPizza, String nomeCliente) {
+	public ClienteGrafico(ListaPizza listaPizza, String nomeCliente, Pizzeria pizzeria) {
 		this.listaPizza = listaPizza;
 		this.nomeCliente = nomeCliente;
+		this.pizzeria = pizzeria;
 	}
 	
 	public ClienteGrafico() {
@@ -103,6 +106,15 @@ public class ClienteGrafico {
 				
 				Thread t = new Thread(c);
 				t.start();
+				
+				/*pizzeria.PizzeInCoda.getDisplay().asyncExec(new Runnable() {
+					public void run() {
+						PizzeInCoda.add(temp);
+					}
+				});*/
+				
+				pizzeria.addPizzaOrdinata(temp);
+				
 				shlOrdinaPizza.close();
 			}
 		});
