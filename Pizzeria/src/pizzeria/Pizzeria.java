@@ -125,11 +125,13 @@ public class Pizzeria {
 		pizzeInProduzione = new List(shell, SWT.BORDER);
 		pizzePronte = new List(shell, SWT.BORDER);
 		
-		
 		Pizzaiolo1 p1 = new Pizzaiolo1(listaPizza);
 		Pizzaiolo2 p2 = new Pizzaiolo2(listaPizza);
 		Thread t1 = new Thread(p1);
 		Thread t2 = new Thread(p2);
+		
+		/*Spoiler newWindow = new Spoiler();
+		newWindow.open();*/
 		
 		apriPizzeria.setBounds(10, 10, 75, 25);
 		apriPizzeria.setText("Apri Pizzeria");
