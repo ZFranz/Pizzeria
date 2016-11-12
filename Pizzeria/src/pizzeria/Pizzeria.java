@@ -76,7 +76,9 @@ public class Pizzeria {
 		
 		
 		Pizzaiolo1 p1 = new Pizzaiolo1(listaPizza);
-		Thread t = new Thread(p1);
+		Pizzaiolo2 p2 = new Pizzaiolo2(listaPizza);
+		Thread t1 = new Thread(p1);
+		Thread t2 = new Thread(p2);
 		
 		apriPizzeria.setBounds(10, 10, 75, 25);
 		apriPizzeria.setText("Apri Pizzeria");
@@ -86,7 +88,8 @@ public class Pizzeria {
 				System.out.println("Pizzeria aperta");
 				ArrivaCliente.setEnabled(true);
 				
-				t.start();
+				t1.start();
+				t2.start();
 			}
 		});
 		
