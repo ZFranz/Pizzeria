@@ -1,5 +1,6 @@
 package pizzeria;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
@@ -110,13 +111,13 @@ public class Pizzeria {
 		ArrivaCliente.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if (text.getText() != null) {
+				if (StringUtils.isBlank(text.getText())) {
 					System.out.println("Nessun cliente");
 				} else {
 					System.out.println("Arriva un cliente");
-					/*nomeCliente = text.getText().toString();
+					nomeCliente = text.getText().toString();
 					ClienteGrafico newWindow = new ClienteGrafico(listaPizza, nomeCliente, pizzeria);
-					newWindow.open();*/
+					newWindow.open();
 				}
 			}
 		});
