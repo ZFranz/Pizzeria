@@ -1,5 +1,7 @@
 package pizzeria;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class ListaPizza {
 	
 	String ordine;
@@ -11,16 +13,23 @@ public class ListaPizza {
 	}
 	
 	public synchronized String pizzaInLista() {
-		while(ordine.equals("")) {
+		while(StringUtils.isBlank(ordine)) {
 			try {
 				System.out.println("nessuna pizza");
 				wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		switch (ordine) {
+		/*pizzeria.removePizzaOrdinata(ordine);
+		pizzeria.addPizzaProduzione(ordine);
+		
+		temp = ordine;
+		ordine = "";
+		notifyAll();
+		*/
+		return "ciao";
+		/*switch (ordine) {
 			case "Pizza bianca":
 				try {
 					pizzeria.removePizzaOrdinata(ordine);
@@ -151,12 +160,12 @@ public class ListaPizza {
 				
 			default:
 				break;
-		}
-		return temp;
+		}*/
 	}
 	
 	public synchronized void pizzaPronta() {
-		
+		// finché non è pronta wait
+		//while()
 	}
 	
 	public synchronized void ordinaPizza(String pizza, Pizzeria pizzeria) {

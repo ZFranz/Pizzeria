@@ -2,7 +2,6 @@ package pizzeria;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -15,7 +14,6 @@ public class ClienteGrafico {
 	protected Shell shlOrdinaPizza;
 	ListaPizza listaPizza;
 	private List list;
-	private List PizzeInCoda;
 	private String nomeCliente;
 	private String temp;
 	private static final String[] ITEMS ={
@@ -104,10 +102,10 @@ public class ClienteGrafico {
 			public void widgetSelected(SelectionEvent e) {
 				Cliente c = new Cliente(listaPizza, nomeCliente, temp, pizzeria);
 				
+				pizzeria.addPizzaOrdinata(temp);
+				
 				Thread t = new Thread(c);
 				t.start();
-				
-				pizzeria.addPizzaOrdinata(temp);
 				
 				shlOrdinaPizza.close();
 			}

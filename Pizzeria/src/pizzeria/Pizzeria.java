@@ -1,10 +1,8 @@
 package pizzeria;
 
 import org.apache.commons.lang3.StringUtils;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
-import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.wb.swt.SWTResourceManager;
@@ -124,6 +122,11 @@ public class Pizzeria {
 		pizzeInCoda = new List(shell, SWT.BORDER);
 		pizzeInProduzione = new List(shell, SWT.BORDER);
 		pizzePronte = new List(shell, SWT.BORDER);
+		Label apertoChiuso = new Label(shell, SWT.NONE);
+		apertoChiuso.setFont(SWTResourceManager.getFont("Shonar Bangla", 10, SWT.BOLD));
+		apertoChiuso.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
+		apertoChiuso.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		apertoChiuso.setText("Pizzeria chiusa");
 		
 		Pizzaiolo1 p1 = new Pizzaiolo1(listaPizza);
 		Pizzaiolo2 p2 = new Pizzaiolo2(listaPizza);
@@ -139,6 +142,7 @@ public class Pizzeria {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				System.out.println("Pizzeria aperta");
+				apertoChiuso.setText("Pizzeria aperta");
 				ArrivaCliente.setEnabled(true);
 				
 				t1.start();
@@ -152,6 +156,7 @@ public class Pizzeria {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				System.out.println("Pizzeria chiusa");
+				apertoChiuso.setText("Pizzeria chiusa");
 				ArrivaCliente.setEnabled(false);
 			}
 		});
@@ -211,5 +216,7 @@ public class Pizzeria {
 		pizzeInCoda.setBounds(10, 90, 150, 350);
 		pizzeInProduzione.setBounds(170, 90, 150, 350);
 		pizzePronte.setBounds(330, 90, 150, 350);
+		
+		apertoChiuso.setBounds(10, 41, 170, 15);
 	}
 }
