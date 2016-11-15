@@ -17,6 +17,7 @@ public class Pizzaiolo1 implements Runnable {
 				System.out.println("Niente pizza");
 			} else {
 				System.out.println("Pizza");
+				pizza = "";
 			}
 			
 			/*switch (ordine) {
