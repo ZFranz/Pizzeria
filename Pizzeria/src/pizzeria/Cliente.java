@@ -15,6 +15,6 @@ public class Cliente implements Runnable {
 	
 	public void run() {
 		lp.ordinaPizza(pizzaSelezionata, pizzeria);
-		lp.pizzaPronta();
+		lp.pizzaPronta(false);
 	}
 }
