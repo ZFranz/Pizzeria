@@ -1,25 +1,30 @@
 package pizzeria;
 
+import java.util.ArrayList;
+
 public class Pizzaiolo implements Runnable {
 	private ListaPizza lp;
-	private String pizza;
+	private ArrayList<String> pizza;
 
 	public Pizzaiolo(ListaPizza lp) {
 		this.lp = lp;
+		pizza = new ArrayList<String>();
 	}
 
 	public void run() {
+		String t;
 		while (true) {
-			pizza = lp.pizzaInLista();
+			t = lp.pizzaInLista();
+			pizza.add(t);
 
-			switch (pizza) {
+			switch (pizza.get(0)) {
 				case "Pizza bianca":
 					try {
 						Thread.sleep(5000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					lp.aggiornaPizzeria(pizza);
+					lp.aggiornaPizzeria(pizza.remove(0));
 					System.out.println("Pizza bianca");
 					break;
 	
@@ -29,7 +34,7 @@ public class Pizzaiolo implements Runnable {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					lp.aggiornaPizzeria(pizza);
+					lp.aggiornaPizzeria(pizza.remove(0));
 					System.out.println("Pizza rossa");
 					break;
 	
@@ -39,7 +44,7 @@ public class Pizzaiolo implements Runnable {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					lp.aggiornaPizzeria(pizza);
+					lp.aggiornaPizzeria(pizza.remove(0));
 					System.out.println("Margherita");
 					break;
 	
@@ -49,7 +54,7 @@ public class Pizzaiolo implements Runnable {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					lp.aggiornaPizzeria(pizza);
+					lp.aggiornaPizzeria(pizza.remove(0));
 					System.out.println("Capricciosa");
 					break;
 	
@@ -60,7 +65,7 @@ public class Pizzaiolo implements Runnable {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					lp.aggiornaPizzeria(pizza);
+					lp.aggiornaPizzeria(pizza.remove(0));
 					System.out.println("Diavola");
 					break;
 	
@@ -70,7 +75,7 @@ public class Pizzaiolo implements Runnable {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					lp.aggiornaPizzeria(pizza);
+					lp.aggiornaPizzeria(pizza.remove(0));
 					System.out.println("Quattro stagioni");
 					break;
 	
@@ -80,7 +85,7 @@ public class Pizzaiolo implements Runnable {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					lp.aggiornaPizzeria(pizza);
+					lp.aggiornaPizzeria(pizza.remove(0));
 					System.out.println("Bufala");
 					break;
 	
@@ -90,7 +95,7 @@ public class Pizzaiolo implements Runnable {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					lp.aggiornaPizzeria(pizza);
+					lp.aggiornaPizzeria(pizza.remove(0));
 					System.out.println("Napoletana");
 					break;
 	
@@ -103,7 +108,6 @@ public class Pizzaiolo implements Runnable {
 					}
 					break;
 				}
-			pizza = "";
 
 		}
 	}

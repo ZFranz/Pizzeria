@@ -43,6 +43,7 @@ public class Spoiler {
 
 	/**
 	 * Create contents of the window.
+	 * @throws IOException 
 	 */
 	protected void createContents() {
 		shlForbidden = new Shell();
@@ -58,6 +59,7 @@ public class Spoiler {
 		
 		lblNewLabel.setBounds(10, 10, 764, 242);
 		lblNewLabel.setText("Non inserisca\nDemian o Igor,\naltrimenti non\npotrà ordinare le pizze.");
+		
 
 	}
 }

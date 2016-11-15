@@ -16,7 +16,7 @@ public class Pizzeria {
 	Pizzeria pizzeria;
 	List pizzeInCoda;
 	List pizzeInProduzione;
-	List pizzePronte;
+	List pizzeRitirate;
 	Display display;
 
 	/**
@@ -84,20 +84,11 @@ public class Pizzeria {
 		});
 	}
 	
-	public void addPizzaPronta(String p) {
+	public void addPizzaRitirata(String p) {
 		display.asyncExec(new Runnable() {			
 			@Override
 			public void run() {
-				pizzePronte.add(p);
-			}
-		});
-	}
-	
-	public void removePizzaPronta(String p) {
-		display.asyncExec(new Runnable() {			
-			@Override
-			public void run() {
-				pizzePronte.remove(p);
+				pizzeRitirate.add(p);
 			}
 		});
 	}
@@ -118,10 +109,10 @@ public class Pizzeria {
 		Button ArrivaCliente = new Button(shell, SWT.NONE);
 		Label labelPizzeInCoda = new Label(shell, SWT.NONE);
 		Label lblPizzeInProduzione = new Label(shell, SWT.NONE);
-		Label lblPizzePronte = new Label(shell, SWT.NONE);
+		Label lblPizzeRitirate = new Label(shell, SWT.NONE);
 		pizzeInCoda = new List(shell, SWT.BORDER);
 		pizzeInProduzione = new List(shell, SWT.BORDER);
-		pizzePronte = new List(shell, SWT.BORDER);
+		pizzeRitirate = new List(shell, SWT.BORDER);
 		Label apertoChiuso = new Label(shell, SWT.NONE);
 		apertoChiuso.setFont(SWTResourceManager.getFont("Shonar Bangla", 10, SWT.BOLD));
 		
@@ -213,15 +204,15 @@ public class Pizzeria {
 		lblPizzeInProduzione.setBounds(170, 69, 150, 15);
 		lblPizzeInProduzione.setText("Pizze in produzione:");
 		
-		lblPizzePronte.setFont(SWTResourceManager.getFont("Letter Gothic Std", 8, SWT.BOLD));
-		lblPizzePronte.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-		lblPizzePronte.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
-		lblPizzePronte.setBounds(330, 69, 150, 15);
-		lblPizzePronte.setText("Pizze pronte:");
+		lblPizzeRitirate.setFont(SWTResourceManager.getFont("Letter Gothic Std", 8, SWT.BOLD));
+		lblPizzeRitirate.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		lblPizzeRitirate.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
+		lblPizzeRitirate.setBounds(330, 69, 150, 15);
+		lblPizzeRitirate.setText("Pizze ritirate:");
 		
 		pizzeInCoda.setBounds(10, 90, 150, 350);
 		pizzeInProduzione.setBounds(170, 90, 150, 350);
-		pizzePronte.setBounds(330, 90, 150, 350);
+		pizzeRitirate.setBounds(330, 90, 150, 350);
 		
 		apertoChiuso.setBounds(10, 41, 170, 15);
 		apertoChiuso.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));

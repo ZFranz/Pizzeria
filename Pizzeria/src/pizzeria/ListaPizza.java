@@ -17,7 +17,7 @@ public class ListaPizza {
 	
 	public synchronized void aggiornaPizzeria(String pizza) {
 		pizzeria.removePizzaProduzione(pizza);
-		pizzeria.addPizzaPronta(pizza);
+		pizzeria.addPizzaRitirata(pizza);
 		pizzePronte.add(pizza);
 		System.out.println(pizzePronte);
 		pronto = false;
@@ -37,6 +37,8 @@ public class ListaPizza {
 		pizzeria.removePizzaOrdinata(t);
 		pizzeria.addPizzaProduzione(t);
 		
+		System.out.println("t: " + t);
+		
 		temp = t;
 		notifyAll();
 		
@@ -55,8 +57,8 @@ public class ListaPizza {
 		}
 		if(pizzaSelezionata == pizzePronte.get(0)) {
 			System.out.println("Pizza ritirata: " + pizzaSelezionata);
-			pizzeria.removePizzaPronta(pizzaSelezionata);
 			pizzePronte.remove(0);
+			System.out.println(pizzePronte);
 		}
 		
 		pronto = true;
