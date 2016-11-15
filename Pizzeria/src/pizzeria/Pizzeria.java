@@ -126,9 +126,9 @@ public class Pizzeria {
 		apertoChiuso.setFont(SWTResourceManager.getFont("Shonar Bangla", 10, SWT.BOLD));
 		
 		Pizzaiolo p1 = new Pizzaiolo(listaPizza);
-		//Pizzaiolo2 p2 = new Pizzaiolo(listaPizza);
+		Pizzaiolo p2 = new Pizzaiolo(listaPizza);
 		Thread t1 = new Thread(p1);
-		//Thread t2 = new Thread(p2);
+		Thread t2 = new Thread(p2);
 		
 		/*Spoiler newWindow = new Spoiler();
 		newWindow.open();*/
@@ -145,7 +145,7 @@ public class Pizzeria {
 				chiudiPizzeria.setEnabled(true);
 				
 				t1.start();
-				//t2.start();
+				t2.start();
 			}
 		});
 		
