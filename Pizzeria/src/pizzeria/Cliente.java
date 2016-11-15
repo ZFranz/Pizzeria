@@ -14,7 +14,9 @@ public class Cliente implements Runnable {
 	}
 	
 	public void run() {
+		//pizzaSelezionata = pizzaSelezionata + "," + nomeCliente;
+		System.out.println(pizzaSelezionata);
 		lp.ordinaPizza(pizzaSelezionata, pizzeria);
-		lp.pizzaPronta(false);
+		lp.pizzaPronta(pizzaSelezionata);
 	}
 }

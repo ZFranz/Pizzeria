@@ -1,24 +1,33 @@
 package pizzeria;
 
+import java.util.ArrayList;
+
 import org.apache.commons.lang3.StringUtils;
 
 public class ListaPizza {
 	
-	String ordine;
+	ArrayList<String> ordini;
+	ArrayList<String> pizzePronte;
 	String temp;
 	Pizzeria pizzeria;
+	Boolean pronto = true;
 	
 	public ListaPizza() {
-		ordine = "";
+		ordini = new ArrayList<String>(); 
+		pizzePronte = new ArrayList<String>();
 	}
 	
 	public synchronized void aggiornaPizzeria(String pizza) {
 		pizzeria.removePizzaProduzione(pizza);
 		pizzeria.addPizzaPronta(pizza);
+		pizzePronte.add(pizza);
+		System.out.println(pizzePronte);
+		pronto = false;
+		notifyAll();
 	}
 	
 	public synchronized String pizzaInLista() {
-		while(StringUtils.isBlank(ordine)) {
+		while(ordini.isEmpty()) {
 			try {
 				System.out.println("nessuna pizza in lista");
 				wait();
@@ -26,17 +35,17 @@ public class ListaPizza {
 				e.printStackTrace();
 			}
 		}
-		pizzeria.removePizzaOrdinata(ordine);
-		pizzeria.addPizzaProduzione(ordine);
+		String t = ordini.remove(0);
+		pizzeria.removePizzaOrdinata(t);
+		pizzeria.addPizzaProduzione(t);
 		
-		temp = ordine;
-		ordine = "";
+		temp = t;
 		notifyAll();
 		
 		return temp;
 	}
 	
-	public synchronized void pizzaPronta(Boolean pronto) {
+	public synchronized void pizzaPronta(String pizzaSelezionata) {
 		// finché non è pronta wait
 		while(pronto) {
 			try {
@@ -46,12 +55,18 @@ public class ListaPizza {
 				e.printStackTrace();
 			}
 		}
+		if(pizzaSelezionata == pizzePronte.get(0)) {
+			System.out.println("Pizza ritirata: " + pizzaSelezionata);
+			pizzeria.removePizzaPronta(pizzaSelezionata);
+			pizzePronte.remove(0);
+		}
 		
 		pronto = true;
+		notifyAll();
 	}
 	
 	public synchronized void ordinaPizza(String pizza, Pizzeria pizzeria) {
-		ordine = pizza;
+		ordini.add(pizza);
 		this.pizzeria = pizzeria;
 		notifyAll();
 	}
