@@ -126,7 +126,7 @@ public class Pizzeria {
 		apertoChiuso.setFont(SWTResourceManager.getFont("Shonar Bangla", 10, SWT.BOLD));
 		
 		Pizzaiolo p1 = new Pizzaiolo(listaPizza);
-		//Pizzaiolo2 p2 = new Pizzaiolo2(listaPizza);
+		//Pizzaiolo2 p2 = new Pizzaiolo(listaPizza);
 		Thread t1 = new Thread(p1);
 		//Thread t2 = new Thread(p2);
 		
