@@ -13,11 +13,10 @@ public class Pizzaiolo1 implements Runnable {
 	public void run() {
 		while(true) {
 			pizza = lp.pizzaInLista();
-			//System.out.println("Pizza: " + pizza);
 			if(StringUtils.isBlank(pizza)) {
-				System.out.println("Pizza: " + pizza);
+				System.out.println("Niente pizza");
 			} else {
-				System.out.println("Pizza: " + pizza);
+				System.out.println("Pizza");
 			}
 			
 			/*switch (ordine) {

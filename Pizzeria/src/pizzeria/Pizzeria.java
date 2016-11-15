@@ -124,14 +124,11 @@ public class Pizzeria {
 		pizzePronte = new List(shell, SWT.BORDER);
 		Label apertoChiuso = new Label(shell, SWT.NONE);
 		apertoChiuso.setFont(SWTResourceManager.getFont("Shonar Bangla", 10, SWT.BOLD));
-		apertoChiuso.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
-		apertoChiuso.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-		apertoChiuso.setText("Pizzeria chiusa");
 		
 		Pizzaiolo1 p1 = new Pizzaiolo1(listaPizza);
-		Pizzaiolo2 p2 = new Pizzaiolo2(listaPizza);
+		//Pizzaiolo2 p2 = new Pizzaiolo2(listaPizza);
 		Thread t1 = new Thread(p1);
-		Thread t2 = new Thread(p2);
+		//Thread t2 = new Thread(p2);
 		
 		/*Spoiler newWindow = new Spoiler();
 		newWindow.open();*/
@@ -144,24 +141,31 @@ public class Pizzeria {
 				System.out.println("Pizzeria aperta");
 				apertoChiuso.setText("Pizzeria aperta");
 				ArrivaCliente.setEnabled(true);
+				apriPizzeria.setEnabled(false);
+				chiudiPizzeria.setEnabled(true);
 				
 				t1.start();
-				t2.start();
+				//t2.start();
 			}
 		});
 		
 		chiudiPizzeria.setBounds(91, 10, 89, 25);
 		chiudiPizzeria.setText("Chiudi Pizzeria");
+		chiudiPizzeria.setEnabled(false);
 		chiudiPizzeria.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				System.out.println("Pizzeria chiusa");
 				apertoChiuso.setText("Pizzeria chiusa");
 				ArrivaCliente.setEnabled(false);
+				apriPizzeria.setEnabled(true);
+				chiudiPizzeria.setEnabled(false);
 			}
 		});
 		
 		lblNomeCliente.setBounds(202, 20, 75, 15);
+		lblNomeCliente.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
+		lblNomeCliente.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		lblNomeCliente.setText("Nome cliente");
 		
 		text = new Text(shell, SWT.BORDER);
@@ -185,7 +189,9 @@ public class Pizzeria {
 				    shell.close();
 				} 
 				else if (StringUtils.isBlank(text.getText())) {
-					System.out.println("Nessun cliente");
+					MessageBox messageBox = new MessageBox(shell, SWT.ICON_ERROR);
+				    messageBox.setMessage("Nessun nome inserito.");
+				    messageBox.open();
 				} else {
 					System.out.println("Arriva un cliente");
 					nomeCliente = text.getText().toString();
@@ -218,5 +224,8 @@ public class Pizzeria {
 		pizzePronte.setBounds(330, 90, 150, 350);
 		
 		apertoChiuso.setBounds(10, 41, 170, 15);
+		apertoChiuso.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
+		apertoChiuso.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		apertoChiuso.setText("Pizzeria chiusa");
 	}
 }

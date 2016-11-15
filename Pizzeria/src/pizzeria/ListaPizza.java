@@ -21,14 +21,14 @@ public class ListaPizza {
 				e.printStackTrace();
 			}
 		}
-		/*pizzeria.removePizzaOrdinata(ordine);
+		pizzeria.removePizzaOrdinata(ordine);
 		pizzeria.addPizzaProduzione(ordine);
 		
 		temp = ordine;
 		ordine = "";
 		notifyAll();
-		*/
-		return "ciao";
+		
+		return "";
 		/*switch (ordine) {
 			case "Pizza bianca":
 				try {
