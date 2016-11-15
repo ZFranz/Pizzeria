@@ -13,6 +13,7 @@ public class Pizzaiolo1 implements Runnable {
 	public void run() {
 		while(true) {
 			pizza = lp.pizzaInLista();
+			System.out.println(pizza);
 			if(StringUtils.isBlank(pizza)) {
 				System.out.println("Niente pizza");
 			} else {

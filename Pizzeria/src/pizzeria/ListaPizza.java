@@ -28,7 +28,7 @@ public class ListaPizza {
 		ordine = "";
 		notifyAll();
 		
-		return "";
+		return temp;
 		/*switch (ordine) {
 			case "Pizza bianca":
 				try {
